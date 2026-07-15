@@ -98,6 +98,3 @@ Unix-style shell built in C that parses and executes commands, with support for 
 - **Saint Francis of Assisi Parish** — Altar Server: Assisted priests and parish staff during services, preparing materials and supporting post-service logistics.
 
 ---
-
-![Profile Views](https://komarev.com/ghpvc/?username=jaeyeh-75&color=blue)
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=jaeyeh-75&show_icons=true&theme=default)
