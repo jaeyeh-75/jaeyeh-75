@@ -89,8 +89,8 @@ Unix-style shell built in C that parses and executes commands, with support for 
 ## 📜 Certifications, Awards & Honors
 
 - **Eagle Scout** — Boy Scouts of America
-- **Silver Palm** — Boy Scouts of America, awarded for continued service and merit beyond Eagle Scout
-- **IBM AI Product Manager Professional Certificate** -- IBM \& SkillUp via Credly July 2026 -- https://www.credly.com/badges/a70a8a50-9510-4791-87c3-651044faa008/public_url
+- **Silver Palm** — Boy Scouts of America, awarded for continued service beyond Eagle Scout
+- **[IBM Artificial Intelligence Fundamentals Certificate](https://www.credly.com/badges/a70a8a50-9510-4791-87c3-651044faa008/public_url)** — IBM & SkillUp via Credly (July 2026)
 
 ## 🤝 Volunteer Experience
 
