@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>James Yeh — Computer Science Portfolio</title>
+<meta name="description" content="James Yeh — CS student at UC Santa Cruz building full-stack, systems, and AI/ML projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EAEDE5;
+    --bg-card: #DDE1D6;
+    --bg-card-hover: #D3D8C9;
+    --ink: #1E241D;
+    --ink-soft: #4B5247;
+    --ink-faint: #7C8375;
+    --border: #C6CBBB;
+    --accent: #A9791C;
+    --accent-soft: #F1E4C4;
+    --add: #2F7D5A;
+    --add-soft: #DCEBE1;
+    --del: #B5473B;
+    --del-soft: #F3DFDB;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --radius: 10px;
+  }
+
+  [data-theme="dark"] {
+    --bg: #14180F;
+    --bg-card: #1D2317;
+    --bg-card-hover: #262E1E;
+    --ink: #E8EBE0;
+    --ink-soft: #AEB6A2;
+    --ink-faint: #767D6C;
+    --border: #333B29;
+    --accent: #E0B24B;
+    --accent-soft: #3A2F14;
+    --add: #59B98A;
+    --add-soft: #1D2E24;
+    --del: #E0776A;
+    --del-soft: #34201C;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Header ---------- */
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .brand span { color: var(--accent); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    transition: color 0.15s ease;
+  }
+
+  nav a:hover { color: var(--accent); }
+
+  .nav-right { display: flex; align-items: center; gap: 18px; }
+
+  #theme-toggle {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--ink-soft);
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  #theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  @media (max-width: 640px) {
+    nav ul { gap: 14px; }
+    nav a { font-size: 12px; }
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: 88px 0 64px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--add);
+    background: var(--add-soft);
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(40px, 7vw, 64px);
+    line-height: 1.05;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1::after {
+    content: '_';
+    color: var(--accent);
+    animation: blink 1.1s steps(1) infinite;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero .role {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+  }
+
+  .hero .role .sep { color: var(--ink-faint); margin: 0 6px; }
+
+  .hero p.tagline {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 0 0 32px;
+  }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+  }
+
+  .btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .btn.primary {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+
+  [data-theme="dark"] .btn.primary { background: var(--accent); color: #14180F; border-color: var(--accent); }
+
+  .btn.primary:hover { opacity: 0.88; transform: translateY(-1px); color: var(--bg); }
+  [data-theme="dark"] .btn.primary:hover { color: #14180F; }
+
+  /* ---------- Section shared ---------- */
+
+  section { padding: 56px 0; border-top: 1px solid var(--border); }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: lowercase;
+    margin: 0 0 8px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0 0 36px;
+  }
+
+  /* ---------- Log / timeline ---------- */
+
+  .log { position: relative; padding-left: 28px; }
+
+  .log::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .commit { position: relative; margin-bottom: 40px; }
+  .commit:last-child { margin-bottom: 0; }
+
+  .commit::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+
+  .commit-meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+
+  .commit-meta .hash { color: var(--accent); }
+
+  .commit-msg {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    font-family: var(--font-body);
+  }
+
+  .commit-body {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 0;
+  }
+
+  /* ---------- Skills ---------- */
+
+  .skill-group { margin-bottom: 26px; }
+  .skill-group:last-child { margin-bottom: 0; }
+
+  .skill-group h3 {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-faint);
+    margin: 0 0 12px;
+    text-transform: lowercase;
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: var(--radius);
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Projects ---------- */
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .project-card:hover { background: var(--bg-card-hover); transform: translateY(-2px); }
+
+  .project-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .project-name {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .project-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--add);
+    background: var(--add-soft);
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+
+  .project-desc {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    margin: 0 0 16px;
+  }
+
+  .project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .lang-list { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+
+  .lang {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+  .project-links { display: flex; gap: 14px; }
+
+  .project-links a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    border-bottom: 1px solid transparent;
+  }
+
+  .project-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ---------- Contact / terminal ---------- */
+
+  .terminal {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .terminal-bar {
+    display: flex;
+    gap: 6px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .terminal-bar span {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--border);
+  }
+
+  .terminal-body {
+    padding: 22px 24px 26px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+
+  .terminal-body .cmd { color: var(--ink-faint); margin-bottom: 16px; }
+  .terminal-body .cmd .prompt { color: var(--add); }
+  .terminal-body .cmd .flag { color: var(--accent); }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px dashed var(--border);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .contact-row:last-child { border-bottom: none; }
+
+  .contact-key { color: var(--ink-faint); }
+  .contact-val {
+    color: var(--ink);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .contact-val:hover { color: var(--accent); }
+
+  .copy-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--ink-faint);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    padding: 32px 0 48px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="#top" class="brand">~/<span>james-yeh</span></a>
+    <nav>
+      <ul>
+        <li><a href="#about">about</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="#skills">skills</a></li>
+        <li><a href="#honors">honors</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <button id="theme-toggle" type="button">dark --mode</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <section class="hero">
+    <span class="hero-eyebrow">$ status: open to full-stack &amp; AI/ML roles</span>
+    <h1>James Yeh</h1>
+    <p class="role">computer science @ UC Santa Cruz<span class="sep">·</span>class of 2027<span class="sep">·</span>San Jose, CA</p>
+    <p class="tagline">I build things end-to-end — from C-based systems tools to full-stack, AI-powered web apps. Minoring in math, majoring in figuring out how things actually work under the hood.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn primary">view projects</a>
+      <a href="James_Yeh_Resume.pdf" class="btn" target="_blank" rel="noopener">resume ↗</a>
+      <a href="https://github.com/jaeyeh-75" class="btn">github ↗</a>
+      <a href="#contact" class="btn">get in touch</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <p class="section-label">$ git log --author="you" --oneline=false</p>
+    <h2 class="section-title">how I got here</h2>
+
+    <div class="log">
+      <div class="commit reveal">
+        <p class="commit-meta"><span class="hash">a3f9c21</span> — before code</p>
+        <p class="commit-msg">Earned Eagle Scout, then the Silver Palm</p>
+        <p class="commit-body">Boy Scouts of America. The Silver Palm recognizes continued service beyond the Eagle rank — the habit of finishing what you start stuck around.</p>
+      </div>
+
+      <div class="commit reveal">
+        <p class="commit-meta"><span class="hash">d81e4b7</span> — Fall 2023</p>
+        <p class="commit-msg">Started B.S. Computer Science at UC Santa Cruz</p>
+        <p class="commit-body">Minoring in Mathematics. Made Dean's Honor List in Winter 2024 and Spring 2025 while working through coursework in algorithms, computer architecture, and neural networks.</p>
+      </div>
+
+      <div class="commit reveal">
+        <p class="commit-meta"><span class="hash">7c2f0a9</span> — systems</p>
+        <p class="commit-msg">Went low-level: a Unix shell and an HTTP server, both in C</p>
+        <p class="commit-body">Built a shell that parses and executes commands with piping and I/O redirection, and an HTTP server that handles routing and malformed requests with proper status codes. Nothing teaches you how the web works like writing the plumbing yourself.</p>
+      </div>
+
+      <div class="commit reveal">
+        <p class="commit-meta"><span class="hash">2e6b8d4</span> — full-stack + ML</p>
+        <p class="commit-msg">Shipped HabiMatch and a slang-translating LLM pipeline</p>
+        <p class="commit-body">HabiMatch matches students with compatible roommates. The slang translator compares a fine-tuned T5 model against an agentic RAG pipeline, wrapped in a full-stack app for side-by-side comparison.</p>
+      </div>
+
+      <div class="commit reveal">
+        <p class="commit-meta"><span class="hash">HEAD</span> — now</p>
+        <p class="commit-msg">Learning AWS, certified in AI fundamentals, looking to collaborate</p>
+        <p class="commit-body">Earned an IBM AI Fundamentals certificate in July 2026. Open to full-stack and AI/ML collaborations — and to full-time or internship opportunities where I can build things end-to-end.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="section-label">$ ls ~/projects</p>
+    <h2 class="section-title">things I've built</h2>
+
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-head">
+          <p class="project-name">HabiMatch</p>
+          <span class="project-tag">shipped</span>
+        </div>
+        <p class="project-desc">Full-stack, cross-platform mobile app that matches students with compatible roommates through profile-based swiping and preference filtering. Real-time messaging and auth run on Supabase.</p>
+        <div class="project-footer">
+          <div class="lang-list">
+            <span class="lang"><span class="dot" style="background:#3178C6"></span>TypeScript</span>
+            <span class="lang"><span class="dot" style="background:#3ECF8E"></span>Supabase</span>
+            <span class="lang"><span class="dot" style="background:#F22F46"></span>Twilio</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/PoolCloser/HabiMatch">code ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-head">
+          <p class="project-name">Slang Translator LM</p>
+          <span class="project-tag">shipped</span>
+        </div>
+        <p class="project-desc">Two slang-translation systems built and compared head-to-head: a fine-tuned T5 model and an agentic RAG pipeline over OpenAI's API and ChromaDB, wrapped in a FastAPI/React app for side-by-side evaluation.</p>
+        <div class="project-footer">
+          <div class="lang-list">
+            <span class="lang"><span class="dot" style="background:#3776AB"></span>Python</span>
+            <span class="lang"><span class="dot" style="background:#009688"></span>FastAPI</span>
+            <span class="lang"><span class="dot" style="background:#412991"></span>OpenAI API</span>
+          </div>
+          <div class="project-links">
+            <a href="https://git.ucsc.edu/cse-143-spring-2026/team_11/-/tree/main/project2?ref_type=heads">code ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-head">
+          <p class="project-name">HTTP Server</p>
+          <span class="project-tag">systems</span>
+        </div>
+        <p class="project-desc">Custom HTTP server written in C that parses, routes, and responds to client requests, with proper status-code handling for malformed requests to keep the server protocol-compliant.</p>
+        <div class="project-footer">
+          <div class="lang-list">
+            <span class="lang"><span class="dot" style="background:#A8B9CC"></span>C</span>
+          </div>
+          <div class="project-links">
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-head">
+          <p class="project-name">Unix-style Shell</p>
+          <span class="project-tag">systems</span>
+        </div>
+        <p class="project-desc">A shell built from scratch in C that parses and executes commands, supporting piping and I/O redirection via file descriptors for flexible command chaining.</p>
+        <div class="project-footer">
+          <div class="lang-list">
+            <span class="lang"><span class="dot" style="background:#A8B9CC"></span>C</span>
+          </div>
+          <div class="project-links">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="section-label">$ cat skills.json</p>
+    <h2 class="section-title">what I work with</h2>
+
+    <div class="skill-group reveal">
+      <h3>languages</h3>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">C</span>
+        <span class="tag">C++</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">Haskell</span>
+        <span class="tag">SQL</span>
+        <span class="tag">LaTeX</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <h3>frameworks & libraries</h3>
+      <div class="tags">
+        <span class="tag">React</span>
+        <span class="tag">React Native</span>
+        <span class="tag">FastAPI</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <h3>data & ML</h3>
+      <div class="tags">
+        <span class="tag">ChromaDB</span>
+        <span class="tag">Agentic RAG</span>
+        <span class="tag">Fine-tuned T5</span>
+        <span class="tag">OpenAI API</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <h3>tools & platforms</h3>
+      <div class="tags">
+        <span class="tag">Git</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Twilio</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <h3>currently learning</h3>
+      <div class="tags">
+        <span class="tag">AWS</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="honors">
+    <p class="section-label">$ cat honors.log</p>
+    <h2 class="section-title">beyond the code</h2>
+
+    <div class="skill-group reveal">
+      <h3>certifications & awards</h3>
+      <div class="tags">
+        <span class="tag">Eagle Scout — BSA</span>
+        <span class="tag">Silver Palm — BSA</span>
+        <span class="tag">Dean's Honor List, Winter 2024 & Spring 2025</span>
+        <a class="tag" href="https://www.credly.com/badges/a70a8a50-9510-4791-87c3-651044faa008/public_url" style="text-decoration:none;">IBM AI Fundamentals Cert ↗</a>
+        <a class="tag" href="https://www.credly.com/badges/ab69c303-715c-416d-9b12-5e909928da4d/public_url" style="text-decoration:none;">Cisco Introduction to Cybersecurity Cert ↗</a>
+
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <h3>volunteer</h3>
+      <div class="tags">
+        <span class="tag">San Jose Family Supportive Housing — produce rescue</span>
+        <span class="tag">St. Francis of Assisi Parish — altar server</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label">$ ./contact.sh</p>
+    <h2 class="section-title">let's talk</h2>
+
+    <div class="terminal reveal">
+      <div class="terminal-bar"><span></span><span></span><span></span></div>
+      <div class="terminal-body">
+        <p class="cmd"><span class="prompt">$</span> contact <span class="flag">--info</span></p>
+
+        <div class="contact-row">
+          <span class="contact-key">email</span>
+          <span class="contact-val" id="email-val">
+            jameseyeh@gmail.com
+            <button class="copy-btn" id="copy-email" type="button">copy</button>
+          </span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-key">school email</span>
+          <a class="contact-val" href="mailto:jaeyeh@ucsc.edu">jaeyeh@ucsc.edu</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-key">github</span>
+          <a class="contact-val" href="https://github.com/jaeyeh-75">github.com/jaeyeh-75 ↗</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-key">linkedin</span>
+          <a class="contact-val" href="https://www.linkedin.com/in/jamesyehhh">linkedin.com/in/jamesyehhh ↗</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-key">location</span>
+          <span class="contact-val">San Jose, CA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script>
+  var toggle = document.getElementById('theme-toggle');
+  var html = document.documentElement;
+
+  toggle.addEventListener('click', function () {
+    var isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    toggle.textContent = isDark ? 'dark --mode' : 'light --mode';
+  });
+
+  var copyBtn = document.getElementById('copy-email');
+  copyBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    var email = 'jameseyeh@gmail.com';
+    navigator.clipboard.writeText(email).then(function () {
+      copyBtn.textContent = 'copied';
+      setTimeout(function () { copyBtn.textContent = 'copy'; }, 1500);
+    });
+  });
+
+  var revealEls = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(function (el) { observer.observe(el); });
+</script>
+
+</body>
+</html>
